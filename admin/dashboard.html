@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#001B47" />
+    <link rel="icon" href="data:," />
+    <title>Panel estadístico</title>
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  </head>
+  <body class="page page-admin">
+    <div class="admin-shell">
+      <aside class="sidebar" id="sidebar" aria-label="Navegación del panel">
+        <div class="sidebar__brand">
+          <strong>Panel Estadístico</strong>
+          <span>Comercio electrónico y medios de pago digitales</span>
+        </div>
+        <button class="nav-link is-active" data-view="resumen">Resumen</button>
+        <button class="nav-link" data-view="respuestas">Respuestas</button>
+        <button class="nav-link" data-view="variables">Variables</button>
+        <button class="nav-link" data-view="estadisticas">Estadísticas</button>
+        <button class="nav-link" data-view="graficos">Gráficos</button>
+        <button class="nav-link" data-view="calidad">Calidad de datos</button>
+        <button class="nav-link" data-view="importar">Importar archivo</button>
+        <button class="nav-link" data-view="exportar">Exportar</button>
+        <button class="nav-link" data-view="cruces">Cruces</button>
+        <button class="nav-link" data-view="conclusiones">Conclusiones</button>
+        <button class="nav-link" data-view="configuracion">Configuración</button>
+        <div class="sidebar__footer">
+          <button class="nav-link" id="btn-logout">Cerrar sesión</button>
+        </div>
+      </aside>
+      <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+      <main class="admin-main">
+        <button class="btn btn-secondary sidebar-toggle" id="sidebar-toggle">☰ Menú</button>
+
+        <header class="admin-header">
+          <h1>Panel Estadístico</h1>
+          <p>Comercio electrónico y medios de pago digitales</p>
+        </header>
+
+        <section data-view-panel="resumen">
+          <div class="kpi-grid">
+            <article class="card kpi"><h2>Total de respuestas</h2><p id="kpi-total">—</p></article>
+            <article class="card kpi"><h2>Respuestas válidas</h2><p id="kpi-validas">—</p></article>
+            <article class="card kpi"><h2>Respuestas con errores</h2><p id="kpi-errores">—</p></article>
+            <article class="card kpi"><h2>Datos faltantes</h2><p id="kpi-faltantes">—</p></article>
+            <article class="card kpi"><h2>Última respuesta</h2><p id="kpi-ultima">—</p></article>
+            <article class="card kpi"><h2>Progreso de muestra</h2><p id="kpi-progreso">—</p></article>
+          </div>
+
+          <article class="card" style="padding:1.2rem">
+            <h2>Meta de muestra</h2>
+            <p id="muestra-estado">—</p>
+            <div class="sample-bar" aria-hidden="true"><span id="muestra-fill" style="width:0%"></span></div>
+            <p>
+              Primera respuesta: <strong id="fecha-primera">—</strong> ·
+              Última respuesta: <strong id="fecha-ultima">—</strong>
+            </p>
+          </article>
+
+          <article class="card" style="padding:1.2rem; margin-top:1rem" id="resumen-hallazgos"></article>
+        </section>
+
+        <section data-view-panel="respuestas" hidden>
+          <article class="card" style="padding:1.2rem">
+            <h2>Respuestas registradas</h2>
+            <div class="toolbar">
+              <input type="search" id="filtro-busqueda" placeholder="Buscar en cualquier campo…" aria-label="Buscar" />
+              <select id="filtro-variable" aria-label="Filtrar por variable">
+                <option value="">Filtrar por variable…</option>
+              </select>
+              <input type="text" id="filtro-valor" placeholder="Valor…" aria-label="Valor del filtro" />
+              <input type="date" id="filtro-desde" aria-label="Fecha desde" />
+              <input type="date" id="filtro-hasta" aria-label="Fecha hasta" />
+              <select id="filas-por-pagina" aria-label="Filas por página">
+                <option value="10">10 filas</option>
+                <option value="25">25 filas</option>
+                <option value="50">50 filas</option>
+              </select>
+              <label class="choice"><input type="checkbox" id="solo-duplicados" /> <span>Solo duplicados</span></label>
+            </div>
+
+            <div class="data-table-wrap">
+              <table class="data-table" id="tabla-respuestas">
+                <thead>
+                  <tr>
+                    <th data-sort="numero">#</th>
+                    <th data-sort="created_at">Fecha</th>
+                    <th data-sort="edad">Edad</th>
+                    <th data-sort="compras_mes">Compras/mes</th>
+                    <th data-sort="gasto_mensual">Gasto (Q)</th>
+                    <th data-sort="metodo_preferido">Método</th>
+                    <th data-sort="seguridad_pago">Seguridad</th>
+                    <th data-sort="confianza_pago">Confianza</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="tabla-body"></tbody>
+              </table>
+            </div>
+
+            <div class="toolbar">
+              <button class="btn btn-secondary" id="pag-anterior">Anterior</button>
+              <span id="pag-info"></span>
+              <button class="btn btn-secondary" id="pag-siguiente">Siguiente</button>
+            </div>
+          </article>
+        </section>
+
+        <section data-view-panel="variables" hidden>
+          <article class="card" style="padding:1.2rem">
+            <label class="field" for="var-select">Seleccione una variable</label>
+            <select id="var-select"></select>
+            <div id="var-contenido"></div>
+          </article>
+        </section>
+        <section data-view-panel="estadisticas" hidden>
+          <article class="card" style="padding:1.2rem">
+            <h2>Estadísticas globales</h2>
+            <div class="field">
+              <label>Varianza / desviación estándar</label>
+              <label class="choice"><input type="radio" name="tipo-var" value="muestra" checked> <span>Muestra (s², n − 1)</span></label>
+              <label class="choice"><input type="radio" name="tipo-var" value="poblacion"> <span>Población (σ², n)</span></label>
+            </div>
+            <div id="estadisticas-contenido"></div>
+          </article>
+        </section>
+        <section data-view-panel="graficos" hidden>
+          <div class="chart-grid">
+            <article class="card chart-card" id="grafico-edad"></article>
+            <article class="card chart-card" id="grafico-compras_mes"></article>
+            <article class="card chart-card" id="grafico-gasto_mensual"></article>
+            <article class="card chart-card" id="grafico-anios_comprando"></article>
+            <article class="card chart-card" id="grafico-cantidad_metodos_pago"></article>
+            <article class="card chart-card" id="grafico-seguridad_pago"></article>
+            <article class="card chart-card" id="grafico-confianza_pago"></article>
+            <article class="card chart-card" id="grafico-compras_pago_digital"></article>
+            <article class="card chart-card" id="grafico-metodo_preferido"></article>
+            <article class="card chart-card" id="grafico-factor_eleccion"></article>
+          </div>
+        </section>
+        <section data-view-panel="calidad" hidden>
+          <article class="card" style="padding:1.2rem" id="calidad-contenido"></article>
+        </section>
+        <section data-view-panel="importar" hidden>
+          <article class="card" style="padding:1.2rem">
+            <h2>Importar respuestas</h2>
+            <p>Acepta archivos .csv y .xlsx (incluidas exportaciones de Google Forms).</p>
+            <input type="file" id="archivo-importar" accept=".csv,.xlsx,.xls" />
+            <div id="importar-estado"></div>
+            <div id="importar-mapeo"></div>
+            <div id="importar-preview"></div>
+            <div id="importar-resumen"></div>
+            <div class="toolbar">
+              <button class="btn btn-primary" id="btn-importar" disabled>Confirmar importación</button>
+            </div>
+          </article>
+        </section>
+        <section data-view-panel="exportar" hidden>
+          <article class="card" style="padding:1.2rem">
+            <h2>Exportar</h2>
+            <div class="toolbar">
+              <button class="btn btn-primary" id="exp-csv">Exportar datos limpios CSV</button>
+              <button class="btn btn-primary" id="exp-xlsx">Exportar datos Excel</button>
+              <button class="btn btn-secondary" id="exp-png">Descargar todos los gráficos PNG</button>
+              <button class="btn btn-secondary" id="exp-imprimir">Imprimir resumen</button>
+            </div>
+            <p class="empty-state">El reporte estadístico preparado para impresión incluye título, muestra, calidad, tablas, gráficos, medidas, interpretaciones, hallazgos, conclusiones y recomendaciones.</p>
+          </article>
+        </section>
+        <section data-view-panel="cruces" hidden>
+          <div id="cruces-contenido" class="chart-grid"></div>
+        </section>
+        <section data-view-panel="conclusiones" hidden>
+          <article class="card" style="padding:1.2rem" id="conclusiones-lista"></article>
+          <article class="card" style="padding:1.2rem; margin-top:1rem" id="recomendaciones-lista"></article>
+        </section>
+        <section data-view-panel="configuracion" hidden>
+          <article class="card" style="padding:1.2rem">
+            <h2>Configuración</h2>
+            <p><strong>Tema:</strong> Comercio electrónico y medios de pago digitales</p>
+            <p><strong>Meta de muestra:</strong> 50 – 100 respuestas válidas</p>
+            <p><strong>Varianza predeterminada:</strong> <span id="cfg-varianza">—</span></p>
+            <p><strong>Cuenta:</strong> use el botón "Cerrar sesión" del menú lateral para salir.</p>
+            <p><strong>Anti-doble-envío (encuesta):</strong> configurable en <code>js/encuesta.js</code> con <code>ANTI_DOBLE_ENVIO</code>.</p>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <dialog class="modal" id="modal-detalle">
+      <div class="modal__card" style="max-width:34rem">
+        <h2>Detalle del registro</h2>
+        <dl id="detalle-contenido"></dl>
+        <div class="modal__actions">
+          <button class="btn btn-secondary" id="detalle-cerrar">Cerrar</button>
+        </div>
+      </div>
+    </dialog>
+
+    <script type="module" src="../js/admin.js"></script>
+    <script type="module" src="../js/dashboard.js"></script>
+    <script type="module" src="../js/variables.js"></script>
+    <script type="module" src="../js/graficos.js"></script>
+    <script type="module" src="../js/importador.js"></script>
+    <script type="module" src="../js/calidad.js"></script>
+    <script type="module" src="../js/estadisticas.js"></script>
+    <script type="module" src="../js/interpretaciones.js"></script>
+    <script type="module" src="../js/exportador.js"></script>
+  </body>
+</html>

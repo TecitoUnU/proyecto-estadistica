@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#001B47" />
+    <link rel="icon" href="data:," />
+    <meta
+      name="description"
+      content="Encuesta académica anónima sobre comercio electrónico y medios de pago digitales. Proyecto de Estadística I."
+    />
+    <title>Comercio electrónico y medios de pago digitales</title>
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/encuesta.css" />
+  </head>
+  <body class="page page-landing">
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <header class="site-header">
+      <div class="site-header__inner">
+        <p class="brand">Estadística I</p>
+        <p class="brand-sub">Proyecto académico · 2026</p>
+      </div>
+    </header>
+
+    <main id="contenido">
+      <section class="hero" aria-labelledby="titulo-estudio">
+        <div class="hero__panel">
+          <p class="eyebrow">Estudio estadístico</p>
+          <h1 id="titulo-estudio">Comercio electrónico y medios de pago digitales</h1>
+          <p class="lede">
+            Estudio estadístico sobre hábitos, confianza y uso de medios de pago en compras por
+            Internet.
+          </p>
+          <p>
+            Esta encuesta forma parte de un proyecto académico de Estadística I. La información
+            recopilada será utilizada exclusivamente con fines educativos y será analizada de forma
+            agregada.
+          </p>
+          <a class="btn btn-primary" href="encuesta.html">Comenzar encuesta</a>
+        </div>
+      </section>
+
+      <section class="facts" aria-label="Información de la encuesta">
+        <article class="card fact-card">
+          <h2>Duración estimada</h2>
+          <p>3–5 minutos</p>
+        </article>
+        <article class="card fact-card">
+          <h2>Preguntas</h2>
+          <p>10 preguntas</p>
+        </article>
+        <article class="card fact-card">
+          <h2>Confidencialidad</h2>
+          <p>Respuestas anónimas</p>
+        </article>
+      </section>
+
+      <section class="card privacy-card" aria-labelledby="aviso-privacidad">
+        <h2 id="aviso-privacidad">Aviso de privacidad</h2>
+        <p>
+          La participación es voluntaria y anónima. No se solicita nombre, DPI, correo, teléfono ni
+          dirección. Los resultados se presentarán de forma agrupada, sin identificar a ninguna
+          persona.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        Proyecto de Estadística I ·
+        <button type="button" class="year-trigger" id="year-trigger" aria-label="2026">2026</button>
+      </p>
+    </footer>
+
+    <dialog class="modal" id="admin-modal" aria-labelledby="admin-modal-title">
+      <form method="dialog" class="modal__card">
+        <h2 id="admin-modal-title">Acceso administrativo</h2>
+        <p>
+          Esta entrada solo permite encontrar el inicio de sesión. El panel exige autenticación con
+          correo y contraseña.
+        </p>
+        <div class="modal__actions">
+          <a class="btn btn-primary" href="admin/login.html">Ir al inicio de sesión</a>
+          <button type="submit" class="btn btn-secondary" value="close">Cerrar</button>
+        </div>
+      </form>
+    </dialog>
+    <script type="module" src="js/accesoAdmin.js"></script>
+  </body>
+</html>

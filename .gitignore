@@ -1,0 +1,7 @@
+js/config.js
+.DS_Store
+*.log
+.idea/
+.vscode/
+.env
+.env.local

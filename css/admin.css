@@ -1,0 +1,269 @@
+.page-admin {
+  background: var(--bg);
+}
+
+.login-wrap {
+  min-height: calc(100vh - 64px);
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.login-card {
+  width: min(26rem, 100%);
+  padding: 1.6rem 1.4rem;
+}
+
+.login-card h1 {
+  font-size: 1.4rem;
+}
+
+.admin-shell {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+}
+
+.sidebar {
+  background: var(--navy);
+  color: #fff;
+  padding: 1.2rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.sidebar__brand {
+  padding: 0.4rem 0.7rem 1rem;
+}
+
+.sidebar__brand strong {
+  display: block;
+  font-size: 1rem;
+}
+
+.sidebar__brand span {
+  color: var(--lavender);
+  font-size: 0.8rem;
+}
+
+.sidebar a,
+.sidebar button.nav-link {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: rgba(255, 255, 255, 0.86);
+  text-align: left;
+  text-decoration: none;
+  font: inherit;
+  padding: 0.65rem 0.8rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background var(--ease), color var(--ease);
+}
+
+.sidebar a:hover,
+.sidebar button.nav-link:hover,
+.sidebar a.is-active,
+.sidebar button.nav-link.is-active {
+  background: rgba(176, 187, 222, 0.18);
+  color: #fff;
+}
+
+.sidebar__footer {
+  margin-top: auto;
+  padding: 0.7rem;
+}
+
+.admin-main {
+  padding: 1.3rem 1.4rem 2rem;
+  min-width: 0;
+}
+
+.admin-header h1 {
+  font-size: 1.45rem;
+  margin-bottom: 0.2rem;
+}
+
+.admin-header p {
+  color: var(--muted);
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.9rem;
+  margin: 1.1rem 0;
+}
+
+.kpi {
+  padding: 1rem 1.05rem;
+}
+
+.kpi h2 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--purple);
+  margin-bottom: 0.35rem;
+}
+
+.kpi p {
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.sample-bar {
+  height: 12px;
+  background: rgba(176, 187, 222, 0.4);
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 0.5rem 0;
+}
+
+.sample-bar span {
+  display: block;
+  height: 100%;
+  background: var(--blue);
+}
+
+.data-table-wrap {
+  overflow: auto;
+  border-radius: var(--radius);
+}
+
+table.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+  background: #fff;
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.7rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  font-size: 0.92rem;
+}
+
+.data-table th {
+  background: rgba(176, 187, 222, 0.25);
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0.8rem 0 1rem;
+}
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.chart-card {
+  padding: 1rem;
+}
+
+.chart-card canvas {
+  width: 100% !important;
+  max-height: 320px;
+}
+
+.sidebar-toggle {
+  display: none;
+  margin-bottom: 0.8rem;
+}
+
+/* El backdrop debe flotar y no ocupar una celda del grid */
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 27, 71, 0.45);
+  z-index: 30;
+  display: none;
+}
+
+.sidebar-backdrop.is-open {
+  display: block;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 2.2rem 1rem;
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .admin-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: min(80vw, 280px);
+    z-index: 40;
+    transform: translateX(-105%);
+    transition: transform 200ms ease;
+  }
+
+  .sidebar.is-open {
+    transform: none;
+  }
+
+  .sidebar-toggle {
+    display: inline-flex;
+  }
+
+  .sidebar-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 27, 71, 0.45);
+    z-index: 30;
+  }
+
+  .sidebar-backdrop.is-open {
+    display: block;
+  }
+}
+
+@media print {
+  .sidebar,
+  .sidebar-toggle,
+  .toolbar,
+  .btn,
+  .no-print {
+    display: none !important;
+  }
+
+  .admin-shell {
+    display: block;
+  }
+
+  .admin-main {
+    padding: 0;
+  }
+
+  .card {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+}
+
+.login-back {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+/* Evitar que las tarjetas de la cuadrícula se salgan por contenido ancho */
+.chart-grid > * {
+  min-width: 0;
+  overflow-x: auto;
+}

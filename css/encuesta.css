@@ -1,0 +1,271 @@
+.page-landing main,
+.survey-wrap,
+.thanks-wrap {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 1.5rem 0 2.5rem;
+}
+
+.hero {
+  margin-bottom: 1.5rem;
+}
+
+.hero__panel {
+  background: var(--hero-grad);
+  color: #fff;
+  border-radius: 18px;
+  padding: 2.2rem 1.6rem;
+  box-shadow: var(--shadow);
+}
+
+.hero__panel .eyebrow {
+  color: var(--lavender);
+}
+
+.hero__panel h1 {
+  font-size: clamp(1.7rem, 4vw, 2.5rem);
+  max-width: 18ch;
+}
+
+.hero__panel .lede,
+.hero__panel p {
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 58ch;
+}
+
+.hero__panel .btn-primary {
+  margin-top: 0.6rem;
+  background: #fff;
+  color: var(--navy);
+}
+
+.hero__panel .btn-primary:hover {
+  background: var(--lavender);
+  color: var(--navy);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.fact-card {
+  padding: 1.15rem 1.2rem;
+}
+
+.fact-card h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--purple);
+  margin-bottom: 0.35rem;
+}
+
+.fact-card p {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.privacy-card {
+  padding: 1.25rem 1.35rem;
+}
+
+.privacy-card h2 {
+  font-size: 1.05rem;
+}
+
+.survey-card,
+.thanks-card {
+  padding: 1.4rem 1.3rem 1.5rem;
+}
+
+.survey-card h1 {
+  font-size: 1.35rem;
+}
+
+.progress {
+  margin: 1rem 0 1.3rem;
+}
+
+.progress__label {
+  font-size: 0.92rem;
+  color: var(--muted);
+  margin-bottom: 0.45rem;
+}
+
+.progress__track {
+  height: 10px;
+  background: rgba(176, 187, 222, 0.45);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--violet));
+  border-radius: inherit;
+  transition: width 220ms ease;
+}
+
+.wizard-step {
+  animation: step-in 200ms ease;
+}
+
+.wizard-step[hidden] {
+  display: none;
+}
+
+@keyframes step-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.step-intro {
+  color: var(--muted);
+}
+
+.likert,
+.choice-list {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.likert {
+  grid-template-columns: 1fr;
+}
+
+.likert__option,
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color var(--ease), background var(--ease);
+}
+
+.likert__option:hover,
+.choice:hover {
+  border-color: var(--violet);
+}
+
+.likert__option:has(input:checked),
+.choice:has(input:checked) {
+  border-color: var(--blue);
+  background: rgba(176, 187, 222, 0.25);
+}
+
+.likert__option input,
+.choice input {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--blue);
+}
+
+.wizard-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: flex-end;
+  margin-top: 1.4rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.review h3 {
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.review-list {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+}
+
+.review-list div {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.15rem;
+}
+
+.review-list dt {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.review-list dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.thanks-wrap {
+  display: grid;
+  place-items: center;
+  flex: 1;
+}
+
+.thanks-card {
+  max-width: 36rem;
+}
+
+@media (min-width: 720px) {
+  .hero__panel {
+    padding: 3rem 2.4rem;
+  }
+
+  .likert {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .likert__option {
+    flex-direction: column;
+    text-align: center;
+    min-height: 6.2rem;
+    justify-content: center;
+  }
+
+  .review-list div {
+    grid-template-columns: 1.2fr 1fr;
+  }
+}
+
+@media (max-width: 800px) {
+  .facts {
+    grid-template-columns: 1fr;
+  }
+
+  .site-header__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .likert {
+    grid-template-columns: 1fr;
+  }
+
+  .likert__option {
+    flex-direction: row;
+    justify-content: flex-start;
+    min-height: auto;
+    text-align: left;
+  }
+
+  .choice-list {
+    grid-template-columns: 1fr;
+  }
+}

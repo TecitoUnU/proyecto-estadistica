@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#001B47" />
+    <link rel="icon" href="data:," />
+    <meta name="description" content="Cuestionario anónimo de 10 preguntas sobre medios de pago digitales." />
+    <title>Encuesta · Medios de pago digitales</title>
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/encuesta.css" />
+  </head>
+  <body class="page page-encuesta">
+    <a class="skip-link" href="#formulario">Saltar al formulario</a>
+
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="brand" href="index.html">Estadística I</a>
+        <p class="brand-sub">Encuesta anónima</p>
+      </div>
+    </header>
+
+    <main id="formulario" class="survey-wrap">
+      <section class="card survey-card" aria-labelledby="survey-title">
+        <h1 id="survey-title">Comercio electrónico y medios de pago digitales</h1>
+
+        <div class="progress" aria-live="polite">
+          <p class="progress__label">
+            Paso <span id="paso-actual">1</span> de <span id="paso-total">4</span>
+            · <span id="paso-titulo">Datos generales</span>
+          </p>
+          <div
+            class="progress__track"
+            role="progressbar"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="25"
+            aria-labelledby="survey-title"
+            id="barra-progreso"
+          >
+            <div class="progress__fill" id="barra-progreso-fill" style="width: 25%"></div>
+          </div>
+        </div>
+
+        <div id="alerta-envio" class="alert" hidden></div>
+
+        <form id="form-encuesta" novalidate>
+          <!-- Paso 1 -->
+          <section class="wizard-step is-active" data-step="1" aria-labelledby="paso-1-titulo">
+            <h2 id="paso-1-titulo">Paso 1 · Introducción</h2>
+            <p class="step-intro">
+              Esta encuesta forma parte de un proyecto académico de Estadística I. La información se
+              analizará de forma agregada. No se recopilan datos personales de identificación.
+            </p>
+
+            <div class="field">
+              <label for="edad">1. ¿Cuál es su edad?</label>
+              <input
+                id="edad"
+                name="edad"
+                type="number"
+                inputmode="numeric"
+                min="15"
+                max="80"
+                step="1"
+                required
+                autocomplete="off"
+                aria-describedby="edad-ayuda edad-error"
+              />
+              <p class="hint" id="edad-ayuda">Ingrese un valor entre 15 y 80 años.</p>
+              <p class="field-error" id="edad-error" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="compras_mes">2. ¿Cuántas compras por Internet realiza aproximadamente en un mes?</label>
+              <input
+                id="compras_mes"
+                name="compras_mes"
+                type="number"
+                inputmode="numeric"
+                min="0"
+                max="50"
+                step="1"
+                required
+                autocomplete="off"
+                aria-describedby="compras_mes-ayuda compras_mes-error"
+              />
+              <p class="hint" id="compras_mes-ayuda">Valor entre 0 y 50.</p>
+              <p class="field-error" id="compras_mes-error" role="alert"></p>
+            </div>
+          </section>
+
+          <!-- Paso 2 -->
+          <section class="wizard-step" data-step="2" hidden aria-labelledby="paso-2-titulo">
+            <h2 id="paso-2-titulo">Paso 2 · Hábitos de compra</h2>
+
+            <div class="field">
+              <label for="gasto_mensual">
+                3. ¿Cuánto dinero gasta aproximadamente al mes en compras por Internet?
+              </label>
+              <input
+                id="gasto_mensual"
+                name="gasto_mensual"
+                type="number"
+                inputmode="decimal"
+                min="0"
+                max="50000"
+                step="0.01"
+                required
+                autocomplete="off"
+                aria-describedby="gasto_mensual-ayuda gasto_mensual-error"
+              />
+              <p class="hint" id="gasto_mensual-ayuda">Monto en quetzales (Q), de 0 a 50,000.</p>
+              <p class="field-error" id="gasto_mensual-error" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="anios_comprando">4. ¿Cuántos años lleva realizando compras por Internet?</label>
+              <input
+                id="anios_comprando"
+                name="anios_comprando"
+                type="number"
+                inputmode="decimal"
+                min="0"
+                max="30"
+                step="0.01"
+                required
+                autocomplete="off"
+                aria-describedby="anios_comprando-ayuda anios_comprando-error"
+              />
+              <p class="hint" id="anios_comprando-ayuda">Puede usar decimales. Rango: 0 a 30 años.</p>
+              <p class="field-error" id="anios_comprando-error" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="cantidad_metodos_pago">
+                5. ¿Cuántos medios de pago digitales diferentes utiliza regularmente?
+              </label>
+              <input
+                id="cantidad_metodos_pago"
+                name="cantidad_metodos_pago"
+                type="number"
+                inputmode="numeric"
+                min="0"
+                max="10"
+                step="1"
+                required
+                autocomplete="off"
+                aria-describedby="cantidad_metodos_pago-ayuda cantidad_metodos_pago-error"
+              />
+              <p class="hint" id="cantidad_metodos_pago-ayuda">
+                Ejemplos: tarjeta, transferencia bancaria, billetera digital, PayPal. Valor entre 0 y
+                10.
+              </p>
+              <p class="field-error" id="cantidad_metodos_pago-error" role="alert"></p>
+            </div>
+          </section>
+
+          <!-- Paso 3 -->
+          <section class="wizard-step" data-step="3" hidden aria-labelledby="paso-3-titulo">
+            <h2 id="paso-3-titulo">Paso 3 · Seguridad y confianza</h2>
+
+            <fieldset class="field fieldset-likert" data-field="seguridad_pago">
+              <legend>6. En una escala de 1 a 5, ¿qué tan seguro considera realizar pagos por Internet?</legend>
+              <div class="likert" role="radiogroup" aria-describedby="seguridad_pago-error">
+                <label class="likert__option">
+                  <input type="radio" name="seguridad_pago" value="1" required />
+                  <span>1 · Nada seguro</span>
+                </label>
+                <label class="likert__option">
+                  <input type="radio" name="seguridad_pago" value="2" />
+                  <span>2 · Poco seguro</span>
+                </label>
+                <label class="likert__option">
+                  <input type="radio" name="seguridad_pago" value="3" />
+                  <span>3 · Neutral</span>
+                </label>
+                <label class="likert__option">
+                  <input type="radio" name="seguridad_pago" value="4" />
+                  <span>4 · Seguro</span>
+                </label>
+                <label class="likert__option">
+                  <input type="radio" name="seguridad_pago" value="5" />
+                  <span>5 · Muy seguro</span>
+                </label>
+              </div>
+              <p class="field-error" id="seguridad_pago-error" role="alert"></p>
+            </fieldset>
+
+            <fieldset class="field fieldset-likert" data-field="confianza_pago">
+              <legend>
+                7. En una escala de 1 a 5, ¿qué nivel de confianza tiene al proporcionar información de
+                pago en tiendas en línea?
+              </legend>
+              <div class="likert" role="radiogroup" aria-describedby="confianza_pago-error">
+                <label class="likert__option">
+                  <input type="radio" name="confianza_pago" value="1" required />
+                  <span>1 · Ninguna confianza</span>
+                </label>
+                <label class="likert__option">
+                  <input type="radio" name="confianza_pago" value="2" />
+                  <span>2 · Poca confianza</span>
+                </label>
+                <label class="likert__option">
+                  <input type="radio" name="confianza_pago" value="3" />
+                  <span>3 · Neutral</span>
+                </label>
+                <label class="likert__option">
+                  <input type="radio" name="confianza_pago" value="4" />
+                  <span>4 · Confianza</span>
+                </label>
+                <label class="likert__option">
+                  <input type="radio" name="confianza_pago" value="5" />
+                  <span>5 · Mucha confianza</span>
+                </label>
+              </div>
+              <p class="field-error" id="confianza_pago-error" role="alert"></p>
+            </fieldset>
+
+            <div class="field">
+              <label for="compras_pago_digital">
+                8. De cada 10 compras que realiza, aproximadamente ¿cuántas paga utilizando medios
+                digitales?
+              </label>
+              <input
+                id="compras_pago_digital"
+                name="compras_pago_digital"
+                type="number"
+                inputmode="numeric"
+                min="0"
+                max="10"
+                step="1"
+                required
+                autocomplete="off"
+                aria-describedby="compras_pago_digital-ayuda compras_pago_digital-error"
+              />
+              <p class="hint" id="compras_pago_digital-ayuda">Número entero entre 0 y 10.</p>
+              <p class="field-error" id="compras_pago_digital-error" role="alert"></p>
+            </div>
+          </section>
+
+          <!-- Paso 4 -->
+          <section class="wizard-step" data-step="4" hidden aria-labelledby="paso-4-titulo">
+            <h2 id="paso-4-titulo">Paso 4 · Preferencias y revisión</h2>
+
+            <fieldset class="field" data-field="metodo_preferido">
+              <legend>9. ¿Cuál es el medio de pago que utiliza principalmente en sus compras por Internet?</legend>
+              <div class="choice-list" role="radiogroup" aria-describedby="metodo_preferido-error">
+                <label class="choice">
+                  <input type="radio" name="metodo_preferido" value="Tarjeta de crédito" required />
+                  <span>Tarjeta de crédito</span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="metodo_preferido" value="Tarjeta de débito" />
+                  <span>Tarjeta de débito</span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="metodo_preferido" value="Transferencia bancaria" />
+                  <span>Transferencia bancaria</span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="metodo_preferido" value="PayPal" />
+                  <span>PayPal</span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="metodo_preferido" value="Billetera digital" />
+                  <span>Billetera digital</span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="metodo_preferido" value="Pago contra entrega" />
+                  <span>Pago contra entrega</span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="metodo_preferido" value="Otro" />
+                  <span>Otro</span>
+                </label>
+              </div>
+              <p class="field-error" id="metodo_preferido-error" role="alert"></p>
+            </fieldset>
+
+            <fieldset class="field" data-field="factor_eleccion">
+              <legend>
+                10. ¿Cuál considera que es la principal razón que influye en su elección de un medio de
+                pago digital?
+              </legend>
+              <div class="choice-list" role="radiogroup" aria-describedby="factor_eleccion-error">
+                <label class="choice">
+                  <input type="radio" name="factor_eleccion" value="Seguridad" required />
+                  <span>Seguridad</span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="factor_eleccion" value="Facilidad de uso" />
+                  <span>Facilidad de uso</span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="factor_eleccion" value="Rapidez" />
+                  <span>Rapidez</span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="factor_eleccion" value="Promociones o descuentos" />
+                  <span>Promociones o descuentos</span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="factor_eleccion" value="Disponibilidad" />
+                  <span>Disponibilidad</span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="factor_eleccion" value="Confianza en la plataforma" />
+                  <span>Confianza en la plataforma</span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="factor_eleccion" value="Costos o comisiones" />
+                  <span>Costos o comisiones</span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="factor_eleccion" value="Otro" />
+                  <span>Otro</span>
+                </label>
+              </div>
+              <p class="field-error" id="factor_eleccion-error" role="alert"></p>
+            </fieldset>
+
+            <section class="review card-soft" aria-labelledby="revision-titulo">
+              <h3 id="revision-titulo">Revise sus respuestas antes de enviarlas.</h3>
+              <dl class="review-list" id="revision-respuestas"></dl>
+            </section>
+          </section>
+
+          <div class="wizard-nav">
+            <button type="button" class="btn btn-secondary" id="btn-anterior" hidden>Anterior</button>
+            <button type="button" class="btn btn-primary" id="btn-siguiente">Siguiente</button>
+            <button type="submit" class="btn btn-primary" id="btn-enviar" hidden>Enviar encuesta</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        Proyecto de Estadística I ·
+        <button type="button" class="year-trigger" id="year-trigger" aria-label="2026">2026</button>
+      </p>
+    </footer>
+
+    <dialog class="modal" id="admin-modal" aria-labelledby="admin-modal-title">
+      <form method="dialog" class="modal__card">
+        <h2 id="admin-modal-title">Acceso administrativo</h2>
+        <p>
+          Esta entrada solo permite encontrar el inicio de sesión. El panel exige autenticación con
+          correo y contraseña.
+        </p>
+        <div class="modal__actions">
+          <a class="btn btn-primary" href="admin/login.html">Ir al inicio de sesión</a>
+          <button type="submit" class="btn btn-secondary" value="close">Cerrar</button>
+        </div>
+      </form>
+    </dialog>
+    <script type="module" src="js/accesoAdmin.js"></script>
+    <script type="module" src="js/encuesta.js"></script>
+  </body>
+</html>
